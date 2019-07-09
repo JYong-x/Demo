@@ -2,7 +2,7 @@
 
 >高德地图 JS API 是一套 JavaScript 语言开发的的地图应用编程接口
 ---
->此篇文档仅为实现点击地图图标显示相应经纬度坐标功能，[代码地址]。详细API见[官网文档](https://lbs.amap.com/api/javascript-api/)
+>此篇文档仅为实现点击地图图标显示相应经纬度坐标功能，[代码地址](https://github.com/Jimmy-xiang/Demo/tree/master/importMap)。详细API见[官网文档](https://lbs.amap.com/api/javascript-api/)
 
 ## 准备
 
@@ -133,5 +133,96 @@ removeListener( listener)
   }
   AMap.event.addListener(map, 'click', mapClick)
 ```
+
+### vue引入高德地图
+
+1. 主文件引入地图
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key='key值"></script>
+    <title>vue-amap</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
+```
+
+2. webpack.base.conf.js文件的最后添加代码
+
+```javascript
+externals: {  //  新增的配置代码
+  'AMap': 'AMap'
+}
+```
+
+3. 在需要引入地图的组件中引入
+
+```javascript
+import AMap from 'AMap'
+```
+
+现在组件中就可以使用AMap了, **注意**执行生成地图的方法不能在created钩子中，要在mounted钩子执行
+
+```javascript
+ createMap () {
+      let map = new AMap.Map('container', {
+        resizeEnable: true,
+        zoom: 15
+      })
+      AMap.plugin('AMap.Geolocation', function () {
+        // 异步加载插件
+        let geolocation = new AMap.Geolocation({
+          // 定位插件
+          enableHighAccuracy: true,
+          timeout: 10000,
+          buttonPosition: 'RB',
+          buttonOffset: new AMap.Pixel(10, 20),
+          zoomToAccuracy: true,
+          showMarker: true
+        })
+        map.addControl(geolocation)
+        geolocation.getCurrentPosition(function (status, result) {
+          if (status === 'complete') {
+            console.log(result)
+            // addMarker(result.position)
+          } else {
+            // onError(result)
+          }
+        })
+      })
+      let addMarker = function (position) {
+        // 创建marker
+        let marker = new AMap.Marker({
+          position: position
+        })
+        map.add(marker)
+        showLocation(position)
+      }
+      let showLocation = function (pos) {
+        // 显示经纬度
+        console.log(pos)
+        let locationWrap = document.querySelector('.location-wrap')
+        locationWrap.innerHTML = `<p>纬度：${pos.lat}</p><p>经度：${pos.lng}</p>`
+      }
+      let mapClick = function (e) {
+        // map.remove('marker')
+        map.clearMap() // 清除地图上的所有覆盖层
+        addMarker(e.lnglat)
+        console.log(map.getAllOverlays('marker')) // 获取所有marker覆盖层
+      }
+      AMap.event.addListener(map, 'click', mapClick)
+    }
+  },
+  mounted () {
+    this.createMap()
+  }
+  ```
 
 >未完待续
