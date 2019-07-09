@@ -2,7 +2,7 @@
 
 >高德地图 JS API 是一套 JavaScript 语言开发的的地图应用编程接口
 ---
->此篇文档仅为实现点击地图图标显示相应经纬度坐标功能，[代码地址](https://github.com/Jimmy-xiang/Demo/tree/master/importMap)。详细API见[官网文档](https://lbs.amap.com/api/javascript-api/)
+>此篇文档仅为实现点击地图图标显示相应经纬度坐标功能，[代码地址](https://github.com/Jimmy-xiang/Demo/tree/master/importMap)。[demo预览](https://jimmy-xiang.github.io/Demo/#/helloAMap)。详细API见[官网文档](https://lbs.amap.com/api/javascript-api/)
 
 ## 准备
 

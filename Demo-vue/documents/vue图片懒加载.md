@@ -1,6 +1,6 @@
 # vue图片懒加载(vue-lazyload)使用
 
->官方地址[点这里](https://github.com/hilongjw/vue-lazyload), demo地址[点这里](https://github.com/Jimmy-xiang/Demo/tree/master/Demo-vue)
+>官方地址[点这里](https://github.com/hilongjw/vue-lazyload),[demo预览](https://jimmy-xiang.github.io/Demo/#/lazyLoad), demo地址[点这里](https://github.com/Jimmy-xiang/Demo/tree/master/Demo-vue)
 ## 使用
 
 1. 安装插件
