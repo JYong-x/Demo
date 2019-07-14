@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from 'components/Home'
 import HelloAMap from 'components/HelloAMap'
 import LazyLoad from 'components/LazyLoad'
+import Table from 'components/Table'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/lazyLoad',
       name: 'LazyLoad',
       component: LazyLoad
+    },
+    {
+      path: '/table',
+      name: 'Table',
+      component: Table
     }
   ]
 })

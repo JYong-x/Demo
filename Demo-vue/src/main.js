@@ -4,9 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueLazyLoad from 'vue-lazyload'
+import Antd from 'ant-design-vue'
 import 'common/styles/index.css'
+import 'ant-design-vue/dist/antd.css'
 
 Vue.config.productionTip = false
+Vue.use(Antd)
 Vue.use(VueLazyLoad, {
   loading: require('./assets/logo.jpg')
 })

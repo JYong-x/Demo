@@ -11,17 +11,20 @@ import AMap from 'AMap'
 export default {
   name: 'HelloAMap',
   data () {
-    return {}
+    return {
+      map: {}
+    }
   },
   methods: {
     createMap () {
-      let map = new AMap.Map('container', {
+      let _this = this
+      _this.map = new AMap.Map('container', {
         resizeEnable: true,
         zoom: 15
       })
       AMap.plugin('AMap.Geolocation', function () {
         // 异步加载插件
-        let geolocation = new AMap.Geolocation({
+        _this.map.geolocation = new AMap.Geolocation({
           // 定位插件
           enableHighAccuracy: true,
           timeout: 10000,
@@ -30,37 +33,38 @@ export default {
           zoomToAccuracy: true,
           showMarker: true
         })
-        map.addControl(geolocation)
-        geolocation.getCurrentPosition(function (status, result) {
+        _this.map.geolocation.getCurrentPosition(function (status, result) {
           if (status === 'complete') {
             console.log(result)
             // addMarker(result.position)
           } else {
             // onError(result)
+            console.log('定位失败')
           }
         })
       })
-      let addMarker = function (position) {
+      _this.map.addControl(_this.map.geolocation)
+      _this.map.addMarker = function (position) {
         // 创建marker
         let marker = new AMap.Marker({
           position: position
         })
-        map.add(marker)
-        showLocation(position)
+        _this.map.add(marker)
+        _this.map.showLocation(position)
       }
-      let showLocation = function (pos) {
+      _this.map.showLocation = function (pos) {
         // 显示经纬度
         console.log(pos)
         let locationWrap = document.querySelector('.location-wrap')
         locationWrap.innerHTML = `<p>纬度：${pos.lat}</p><p>经度：${pos.lng}</p>`
       }
-      let mapClick = function (e) {
+      _this.map.mapClick = function (e) {
         // map.remove('marker')
-        map.clearMap() // 清除地图上的所有覆盖层
-        addMarker(e.lnglat)
-        console.log(map.getAllOverlays('marker')) // 获取所有marker覆盖层
+        _this.map.clearMap() // 清除地图上的所有覆盖层
+        _this.map.addMarker(e.lnglat)
+        console.log(_this.map.getAllOverlays('marker')) // 获取所有marker覆盖层
       }
-      AMap.event.addListener(map, 'click', mapClick)
+      AMap.event.addListener(_this.map, 'click', _this.map.mapClick)
     }
   },
   mounted () {
