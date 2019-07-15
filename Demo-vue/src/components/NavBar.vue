@@ -2,6 +2,7 @@
   <div class="nav-bar">
     <router-link tag="a" to="/helloAMap">AMap</router-link>
     <router-link tag="a" to="/lazyLoad">lazyLoad</router-link>
+    <router-link tag="a" to="/table">Table</router-link>
   </div>
 </template>
 
@@ -15,7 +16,8 @@ export default {
   .nav-bar {
     width: 100%;
     height: 40px;
-    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    /* border-bottom: 1px solid #ccc; */
     text-align: center
   }
   a {
