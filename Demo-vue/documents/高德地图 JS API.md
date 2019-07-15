@@ -145,7 +145,7 @@ removeListener( listener)
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key='key值"></script>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key='key值"></script>
     <title>vue-amap</title>
   </head>
   <body>
@@ -155,7 +155,7 @@ removeListener( listener)
 </html>
 ```
 
-2. webpack.base.conf.js文件的最后添加代码
+2. webpack.base.conf.js文件的最后添加代码,配置修改后需要重新运行项目
 
 ```javascript
 externals: {  //  新增的配置代码
