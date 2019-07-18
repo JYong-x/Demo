@@ -1,6 +1,10 @@
 # vue图片懒加载(vue-lazyload)使用
 
->官方地址[点这里](https://github.com/hilongjw/vue-lazyload),[demo预览](https://jimmy-xiang.github.io/Demo/#/lazyLoad), demo地址[点这里](https://github.com/Jimmy-xiang/Demo/tree/master/Demo-vue)
+>图片懒加载可以防止页面一次性向服务器发送大量请求，以达到减少或延迟请求数，缓解浏览器的压力，增强用户体验的作用
+
+>[插件源码](https://github.com/hilongjw/vue-lazyload)
+[DEMO预览](https://jimmy-xiang.github.io/Demo/#/lazyLoad)
+[DEMO地址](https://github.com/Jimmy-xiang/Demo/tree/master/Demo-vue)
 ## 使用
 
 1. 安装插件
