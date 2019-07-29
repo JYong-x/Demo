@@ -3,6 +3,7 @@
     <router-link tag="a" to="/helloAMap">AMap</router-link>
     <router-link tag="a" to="/lazyLoad">lazyLoad</router-link>
     <router-link tag="a" to="/table">Table</router-link>
+    <router-link tag="a" to="/dragTable">DragTable</router-link>
   </div>
 </template>
 

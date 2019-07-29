@@ -4,6 +4,7 @@ import Home from 'components/Home'
 import HelloAMap from 'components/HelloAMap'
 import LazyLoad from 'components/LazyLoad'
 import Table from 'components/Table'
+import DragTable from 'components/DragTable'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/table',
       name: 'Table',
       component: Table
+    },
+    {
+      path: '/dragTable',
+      name: 'DragTable',
+      component: DragTable
     }
   ]
 })
