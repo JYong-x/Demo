@@ -7,7 +7,7 @@
   * @param {Array} [dataSource] - 表格数据
   * @param {Array} [dataItems] - 表格外的可推拽块
   * @param {Number} [dataTargetCol] - 表格的推拽目标列项
-  * changeDataSource - 推拽完成后的表格数据
+  * changeDataSource - 推拽完成后的事件函数，返回推拽完成后的表格数据
   * @example 调用示例
   *  <drag-table-base
    :columns="columns"
