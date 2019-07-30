@@ -1,3 +1,23 @@
+<!--
+  /**
+  * 表格推拽组件
+  * @desc  DragTable的子组件
+  * @author 
+  * @param {Array} [columns]    - 表头数据
+  * @param {Array} [dataSource] - 表格数据
+  * @param {Array} [dataItems] - 表格外的可推拽块
+  * @param {Number} [dataTargetCol] - 表格的推拽目标列项
+  * changeDataSource - 推拽完成后的表格数据
+  * @example 调用示例
+  *  <drag-table-base
+   :columns="columns"
+   :dragItems="dragItems"
+   :dataSource="dataSource"
+   :dragTargetCol="dragTargetCol"
+   @changeDataSource="changeDataSource"></drag-table-base>
+  */
+   -->
+
 <template>
   <div class="wrapper">
     <div class="drag-item-wrapper">
@@ -16,7 +36,7 @@
         :dataSource="dataSource"
         :rowKey="record => record.id"
       >
-      <span slot="tags" slot-scope="tags">
+      <span class="table-row-drag" slot="tags" slot-scope="tags">
         <div class="drag-item" draggable="true" @dragstart="dragstart" v-for="item in tags" :key="item">{{item}}</div>
       </span>
       </a-table>
@@ -49,6 +69,11 @@ export default {
     this.columns[this.dragTargetCol].customCell = (record, rowIndex) => {
       return {
         on: {
+          dragstart: e => {
+            this.originItem = e.target
+            this.originRecord = record
+            this.originRowIndex = rowIndex
+          },
           // dragenter: e => {},
           dragover: e => {
             e.preventDefault()
@@ -57,10 +82,14 @@ export default {
             e.preventDefault()
             let targetDom = e.target
             let origin = this.dragItem.innerText
-            console.log(record)
             if (!this.checkSameItem(record.tags, origin)) {
               record.tags.push(origin)
               this.dataSource[rowIndex] = record
+              if (this.dragParent.className === 'table-row-drag') {
+                let index = this.findIndex(this.originRecord.tags, this.originItem.innerText)
+                this.originRecord.tags.splice(index, 1)
+                this.dataSource[this.originRowIndex]
+              }
               this.$emit('changeDataSource', this.dataSource)
             }
           }
@@ -72,11 +101,17 @@ export default {
   methods: {
     dragstart (e) {
       this.dragItem = e.target
+      this.dragParent = e.path[1]
     },
     checkSameItem (arrData, checkItem) {
       return arrData.some((item) => {
         return item === checkItem
     })
+    },
+    findIndex (list, item) {
+      return list.findIndex(it => {
+        return it === item
+      })
     }
   }
 };
