@@ -2,7 +2,9 @@
   <drag-table-base
    :columns="columns"
    :dragItems="dragItems"
-   :dataSource="dataSource"></drag-table-base>
+   :dataSource="dataSource"
+   :dragTargetCol="dragTargetCol"
+   @changeDataSource="changeDataSource"></drag-table-base>
 </template>
 
 <script>
@@ -10,44 +12,48 @@ import DragTableBase from './DragTableBase'
 
 const dataSource = [
   {
-    targetType: '拖拽块1'
+    id: 1,
+    tags: ['拖拽块1', '拖拽块4']
   },
   {
-    targetType: '拖拽块2'
+    id: 2,
+    tags: ['拖拽块2']
   },
   {
-    targetType: '拖拽块3'
+    id: 3,
+    tags: ['拖拽块3']
   },
 ]
 
 const dragItems = [
   {
-    name: '推拽块1',
+    name: '拖拽块1',
     id: 1,
   },
   {
-    name: '推拽块2',
+    name: '拖拽块2',
     id: 2,
   },
   {
-    name: '推拽块3',
+    name: '拖拽块3',
     id: 3,
   },
   {
-    name: '推拽块4',
+    name: '拖拽块4',
     id: 4,
   },
   {
-    name: '推拽块5',
+    name: '拖拽块5',
     id: 5,
   }
 ]
 const columns = [
   {
     title:'学生范围',
-      dataIndex: 'targetType',
-      key: 'targetType',
+      dataIndex: 'tags',
+      key: 'tags',
       width:120,
+      scopedSlots: { customRender: 'tags' },
   },
   {
     title:'年级',
@@ -84,11 +90,18 @@ export default {
     return {
       columns,
       dragItems,
-      dataSource
+      dataSource,
+      dragTargetCol: 0
     }
   },
   components: {
     DragTableBase
+  },
+  methods: {
+    changeDataSource (data) {
+      this.dataSource = data
+      console.log(this.dataSource)
+    }
   }
 }
 </script>
