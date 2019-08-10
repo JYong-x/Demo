@@ -34,12 +34,7 @@
         class="table-row"
         :columns="columns"
         :dataSource="dataSource"
-        :rowKey="record => record.id"
-      >
-      <span class="table-row-drag" slot="tags" slot-scope="tags">
-        <div class="drag-item" draggable="true" @dragstart="dragstart" v-for="item in tags" :key="item">{{item}}</div>
-      </span>
-      </a-table>
+      ></a-table>
     </div>
   </div>
 </template>
@@ -121,8 +116,7 @@ export default {
 .drag-item {
   display: inline-block;
   margin: 0 10px;
-  padding: 0 5px;
-  border: 1px solid #999;
-  line-height: 21px;
+  line-height: 30px;
+  border: 1px solid #333;
 }
 </style>
