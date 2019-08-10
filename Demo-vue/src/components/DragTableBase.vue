@@ -6,7 +6,6 @@
     <div class="table-wrap">
       <a-table :columns="columns"
         :dataSource="dataSource"
-        :rowKey="record => record.id"
       ></a-table>
     </div>
   </div>
@@ -42,5 +41,8 @@ export default {
 <style scoped>
 .drag-item {
   display: inline-block;
+  margin: 0 10px;
+  line-height: 30px;
+  border: 1px solid #333;
 }
 </style>
