@@ -6,6 +6,7 @@ import LazyLoad from 'components/LazyLoad'
 import Table from 'components/Table'
 import DragTable from 'components/DragTable'
 import TableTwo from 'components/TableTwo'
+import Guide from 'components/guide/Guide'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/tableTwo',
       name: 'tableTwo',
       component: TableTwo
+    },
+    {
+      path: '/guide',
+      name: 'Guide',
+      component: Guide
     }
   ]
 })

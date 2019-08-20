@@ -1,10 +1,11 @@
 <template>
   <div class="nav-bar">
-    <router-link tag="a" to="/helloAMap">AMap</router-link>
-    <router-link tag="a" to="/lazyLoad">lazyLoad</router-link>
-    <router-link tag="a" to="/table">Table</router-link>
-    <router-link tag="a" to="/dragTable">DragTable</router-link>
-    <router-link tag="a" to="/tableTwo">TableTwo</router-link>
+    <router-link tag="a" id="a-map" to="/helloAMap">AMap</router-link>
+    <router-link tag="a" id="lazy-load" to="/lazyLoad">lazyLoad</router-link>
+    <router-link tag="a" id="table" to="/table">Table</router-link>
+    <router-link tag="a" id="drag-table" to="/dragTable">DragTable</router-link>
+    <router-link tag="a" id="table-Two" to="/tableTwo">TableTwo</router-link>
+    <router-link tag="a" to="/guide">Guide</router-link>
   </div>
 </template>
 
