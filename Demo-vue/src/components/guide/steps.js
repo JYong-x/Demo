@@ -20,7 +20,7 @@ const steps = [
     popover: {
       title: '表格拖拽',
       description: '表格推拽',
-      position: 'left'
+      position: 'bottom'
     }
   }
 ]
